@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
-import ASide from './pages/ASide.jsx'
+import ClassesSections from './pages/ClassesSections.jsx'
 
 const router = createBrowserRouter([
   {
@@ -11,9 +11,9 @@ const router = createBrowserRouter([
     element: <App />,
 
     children: [
-      {
-        path: '/aside',
-        element: <ASide />
+      {        
+        path: '/classes',
+        element: <ClassesSections />
       }
     ]
   }
