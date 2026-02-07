@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
-import { IoSearch } from 'react-icons/io5'
+import { IoSearch, IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import recentPayments from '../Data/recentPayments'
+import pendingFees from '../Data/pendingFees'
+import { overdueFees } from '../Data/pendingFees'
 
 const FeesCollection = () => {
     const [active, setActive] = useState('Recent');
   return (
-    <div className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
-        <div className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1">
+    <section className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
+        <Link to='/' className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1">
             <MdArrowBackIos  className='text-white' size={24}/>
             <span className='text-white font-medium'>Back to Dashboard</span>
-        </div>
+        </Link>
     
         <div className="bg-white rounded-md p-8 shadow-[0_5px_20px_rgba(0,0,0,0.1)] mb-8">
             <h1 className='text-[#006b3f] text-4xl font-bold mb-4'>🏠 Fee Management</h1>
@@ -19,11 +23,11 @@ const FeesCollection = () => {
     
         <div className="grid grid-cols-4 gap-5 mb-8">
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
-                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>125,654Birr</h1>
+                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>%29,654</h1>
                 <span className='text-[#666]'>Total Collected</span>
             </div>
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
-                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>54,332Birr</h1>
+                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>$9,876</h1>
                 <span className='text-[#666]'>Pending Fees</span>
             </div>
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
@@ -50,15 +54,25 @@ const FeesCollection = () => {
                 <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Record Payments</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-[1fr_1fr_1fr] gap-5 mb-4">
+                <div className="mb-4">
+                    <input type="text" placeholder='Search Sections...' className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm focus:outline-[#006b3f]"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+                <div className="mb-4">
+                    <select name="subject" id="subject" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" required>
+                        <option value="">Select Payment</option>
+                        <option value="All Payments">All Payments</option>
+                        <option value="Mobile Money">Mobile Money</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                    </select>
                 </div>
-            </div>
+
+                <button className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    Search
+                </button>
+            </form>
 
             <table className='w-full border-collapse mt-4'>
                 <thead>
@@ -69,48 +83,23 @@ const FeesCollection = () => {
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Payment Method</th>
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Date</th>
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Status</th>
-                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Action</th>
+                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Actions</th>
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-[#10b981] font-bold text-left'>1,500Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mobile Money</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Paid</span></td>
+                    {   recentPayments.map((payment, index) => (
+                        <tr key={index} className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{payment.studentName}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{payment.feeType}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-[#10b981] font-bold text-left'>{payment.Amount}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{payment.paymentMethod}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{payment.date}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium text-[#006b3f] bg-[#d1fae5]'>{payment.status}</span></td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
                             <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
                             <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
                         </td>
-                    </tr>
-                    
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-[#10b981] font-bold text-left'>1,300Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Cash</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Paid</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                        </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b text-[#10b981] font-bold border-[#e1e5e9] text-left'>1,100Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Bank Transfer</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Paid</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                        </td>
-                    </tr>
+                    </tr> )) }
                 </tbody>
             </table>
         </div>}
@@ -127,10 +116,10 @@ const FeesCollection = () => {
                 <div className="border flex-6 border-[#666] rounded-md w-full h-10">
                     <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
-                </div>
+                <button className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    Search
+                </button>
             </div>
 
             <table className='w-full border-collapse mt-4'>
@@ -141,45 +130,22 @@ const FeesCollection = () => {
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Amount</th>
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Date</th>
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Days Left</th>
-                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Action</th>
+                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Actions</th>
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-[#ce1126] font-bold text-left'>500Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>5 Days</td>
+                    {   pendingFees.map((pending, index) => (
+                        <tr key={index} className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{pending.studentName}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{pending.feeType}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-[#ce1126] font-bold text-left'>{pending.amount}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{pending.dueDate}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{pending.daysLeft}</td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
                             <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Mark Paid</button>
                             <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Send Email</button>
                         </td>
-                    </tr>
-                    
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-[#ce1126] font-bold text-left'>300Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>7 Days</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white  border border-[#e1e5e9] px-4 py-2 rounded-md'>Mark Paid</button>
-                            <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Send Email</button>
-                        </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b text-[#ce1126] font-bold border-[#e1e5e9] text-left'>700Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>3 Days</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white  border border-[#e1e5e9] px-4 py-2 rounded-md'>Mark Paid</button>
-                            <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Send Email</button>
-                        </td>
-                    </tr>
+                    </tr> )) }
                 </tbody>
             </table>
         </div>}
@@ -196,10 +162,10 @@ const FeesCollection = () => {
                 <div className="border flex-6 border-[#666] rounded-md w-full h-10">
                     <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
-                </div>
+                <button className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    Search
+                </button>
             </div>
 
             <table className='w-full border-collapse mt-4'>
@@ -208,52 +174,29 @@ const FeesCollection = () => {
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Student name</th>
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Fee Type</th>
                         <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Amount</th>
-                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Date</th>
-                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Days Left</th>
-                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Action</th>
+                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Due Date</th>
+                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Days Overdues</th>
+                        <th className="p-4 bg-[#f8f9fa] text-[#333] font-semibold border-b border-[#e1e5e9] text-left">Actions</th>
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-[#ce1126] font-bold text-left'>500Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>5 Days</td>
+                    {   overdueFees.map((overdues, index) => (
+                        <tr key={index} className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{overdues.studentName}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{overdues.feeType}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-[#ce1126] font-bold text-left'>{overdues.amount}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{overdues.dueDate}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{overdues.daysLeft}</td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
                             <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Mark Paid</button>
                             <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Call Parent</button>
                         </td>
-                    </tr>
-                    
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-[#ce1126] font-bold text-left'>300Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>7 Days</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white  border border-[#e1e5e9] px-4 py-2 rounded-md'>Mark Paid</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Call Parent</button>
-                        </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adnan Mohamed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Tuition Fee</td>
-                        <td className='p-4 border-b text-[#ce1126] font-bold border-[#e1e5e9] text-left'>700Birr</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-04-19</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>3 Days</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white  border border-[#e1e5e9] px-4 py-2 rounded-md'>Mark Paid</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Call Parent</button>
-                        </td>
-                    </tr>
+                    </tr> )) }
                 </tbody>
             </table>
         </div>}
 
-        </div>
+    </section>
   )
 }
 

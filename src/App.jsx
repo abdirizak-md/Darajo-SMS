@@ -4,21 +4,17 @@ import { Outlet } from 'react-router-dom'
 
 const App = () => {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <ASide />
-
-      {/* Right side */}
-      <div className="flex flex-col flex-1">
-        {/* Header */}
-        <Header />
-
+    <div className="flex flex-col">
+      {/* Header */}
+      <Header />
+      <div className="flex h-screen overflow-y-auto">
+        <ASide/>
         {/* Page Content or dashboard*/}
-        <main className="flex-1 overflow-y-auto bg-[#f5f7fa] custom-scrollbar">
+        <main className="flex flex-1 bg-[#f5f7fa]">
           <Outlet />
         </main>
-
       </div>
+
     </div>
   )
 }

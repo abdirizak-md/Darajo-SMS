@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
-import { IoSearch } from 'react-icons/io5'
+import { IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import assignments from '../Data/assignments'
+import grades from '../Data/grades'
+import subjects from '../Data/subjects'
 
 const Subjects = () => {
     const [active, setActive] = useState('subjects');
   return (
-    <div className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
-        <div className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1">
+    <section className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
+        <Link to='/' className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-95">
             <MdArrowBackIos  className='text-white' size={24}/>
             <span className='text-white font-medium'>Back to Dashboard</span>
-        </div>
+        </Link>
     
         <div className="bg-white rounded-md p-8 shadow-[0_5px_20px_rgba(0,0,0,0.1)] mb-8">
             <h1 className='text-[#006b3f] text-4xl font-bold mb-4'>🏠 Subjects & Assignment</h1>
@@ -37,9 +41,9 @@ const Subjects = () => {
         </div>
     
         <div className="flex gap-5 mb-8">
-            <button onClick={() => setActive('subjects')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'subjects' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Subjects</button>
-            <button onClick={() => setActive('assignments')} className={`px-8 py-3 border border-[#e1e5e9] rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'assignments' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Assignments</button>
-            <button onClick={() => setActive('grades')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'grades' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Grades</button>
+            <button onClick={() => setActive('subjects')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md hover:shadow-md active:scale-95 transition-all duration-200 shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'subjects' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Subjects</button>
+            <button onClick={() => setActive('assignments')} className={`px-8 py-3 border border-[#e1e5e9] rounded-md hover:shadow-md active:scale-95 transition-all duration-200 shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'assignments' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Assignments</button>
+            <button onClick={() => setActive('grades')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md hover:shadow-md active:scale-95 transition-all duration-200 shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'grades' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Grades</button>
         </div>
     
         {/* Subjects */}
@@ -50,15 +54,16 @@ const Subjects = () => {
                 <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Add Subjects</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-1 md:grid-cols-[3fr_2fr_150px] gap-5 mb-4">
+                <div className="mb-4">
+                    <input type="text" placeholder="Search students, teachers, fees, and exam..." className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    <button>Search</button>
                 </div>
-            </div>
+            </form>
 
             <table className='w-full border-collapse mt-4'>
                 <thead>
@@ -72,39 +77,18 @@ const Subjects = () => {
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>MATHO1O1</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 1-6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mr. Mohamed Warsame</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Active</span></td>
+                    {   subjects.map((subject, index) => (
+                        <tr className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{subject.subjectName}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{subject.code}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{subject.classLevel}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{subject.teacher}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-2xl text-sm font-medium text-[#10b981] bg-[#d1fae5]'>{subject.status}</span></td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
                             <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
                             <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>English</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>ENG0101</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 1-6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mr. Ahmed Warsame</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Active</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Somali</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>SOM0101</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 1-6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mr. Hodan Ahmed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Active</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
-                        </td>
-                    </tr>
+                    </tr> )) }
                 </tbody>
             </table>
         </div>}
@@ -117,15 +101,16 @@ const Subjects = () => {
                 <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Assignments</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-1 md:grid-cols-[3fr_2fr_150px] gap-5 mb-4">
+                <div className="mb-4">
+                    <input type="text" placeholder="Search students, teachers, fees, and exam..." className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    <button>Search</button>
                 </div>
-            </div>
+            </form>
 
             <table className='w-full border-collapse mt-4'>
                 <thead>
@@ -140,45 +125,20 @@ const Subjects = () => {
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Algebra Practice Problem</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-03-16</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium text-[#065f46] bg-['>Active</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>28/30</td>
+                    {   assignments.map((assignment) => (
+                        <tr className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{assignment.assignmetTitle}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{assignment.subject}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{assignment.classLevel}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{assignment.dueDate}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className={`py-1 px-2.5 rounded-2xl text-sm font-medium ${assignment.status === 'Active' ? 'bg-[#d1fae5] text-[#10b981]' : ''} ${assignment.status === 'Pending' ? 'bg-[#fef3c7] text-[#92400e]' : ''} ${assignment.status === 'Completed' ? 'bg-[#dbeafe] text-[#1e40af]' : ''}`}>{assignment.status}</span></td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{assignment.submissions}</td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
                             <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
                             <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
                             <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
                         </td>
-                    </tr>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Algebra Practice Problem</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-03-16</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#dbeafe] text-[#1e40af]'>Completed</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>28/30</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
-                        </td>
-                    </tr>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Algebra Practice Problem</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>2026-03-16</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#fef3c7] text-[#92400e]'>Pending</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>28/30</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
-                        </td>
-                    </tr>
+                    </tr> )) }
                 </tbody>
             </table>
         </div>}
@@ -191,15 +151,26 @@ const Subjects = () => {
                 <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Import Grades</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
-                </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
-                </div>
+        <form className="grid grid-cols-1 md:grid-cols-[3fr_2fr_150px] gap-5 mb-4">
+            <div className="mb-4">
+                <input type="text" placeholder='Search Classes...' className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
             </div>
+
+            <div className="mb-4">
+                <select name="subject" id="subject" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" required>
+                    <option value="">All Grades</option>
+                    <option value="Class 9">Class 9</option>
+                    <option value="Class 10">Class 10</option>
+                    <option value="Class 11">Class 11</option>
+                    <option value="Class 12">Class 12</option>
+                </select>
+            </div>
+
+            <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                <IoSearchOutline size={24}/>
+                <button>Search</button>
+            </div>
+        </form>
 
             <table className='w-full border-collapse mt-4'>
                 <thead>
@@ -214,46 +185,23 @@ const Subjects = () => {
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Adna Mohamed Abdi</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 8</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>English</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Writing Practice</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>79%</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Good Effort!</td>
+                    {   grades.map((grade) => (
+                        <tr className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{grade.studentName}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{grade.classLeve}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{grade.subject}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{grade.assignment}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{grade.grade}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{grade.comments}</td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
                             <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
                             <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
                         </td>
-                    </tr>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Anas Mohamed Ahmed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Algebra Practice</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>85%</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Excellent Work!</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                        </td>
-                    </tr>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Anas Mohamed Ahmed</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Algebra Practice</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>85%</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Excellent Work!</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[#10b981] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                        </td>
-                    </tr>
+                    </tr> )) }
                 </tbody>
             </table>
         </div>}
-        </div>
+    </section>
   )
 }
 

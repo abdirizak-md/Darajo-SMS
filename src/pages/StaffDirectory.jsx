@@ -2,7 +2,7 @@ import React from 'react'
 
 const StaffDirectory = () => {
   return (
-    <div>StaffDirectory</div>
+    <section>StaffDirectory</section>
   )
 }
 

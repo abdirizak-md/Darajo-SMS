@@ -2,7 +2,7 @@ import React from 'react'
 
 const PendingFees = () => {
   return (
-    <div>PendingFees</div>
+    <section>PendingFees</section>
   )
 }
 

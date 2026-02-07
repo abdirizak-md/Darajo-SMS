@@ -1,223 +1,146 @@
 import { useState } from 'react'
 import { FaCalendarWeek, FaPlus } from 'react-icons/fa6'
-import { IoSearch } from 'react-icons/io5'
+import { IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import allClasses from '../Data/allClasses'
+import sections from '../Data/sections'
 
 const ClassesSections = () => {
     const [active, setActive] = useState('classes')
   return (
-    <div className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
-        <div className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1">
+    <section className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
+        <Link to='/' className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-95">
             <MdArrowBackIos  className='text-white' size={24}/>
             <span className='text-white font-medium'>Back to Dashboard</span>
-        </div>
+        </Link>
 
         <div className="bg-white rounded-md p-8 shadow-[0_5px_20px_rgba(0,0,0,0.1)] mb-8">
             <h1 className='text-[#006b3f] text-3xl font-bold mb-4'>🏠 Classes & Sections</h1>
             <span className='text-[#666]'>Manage Academic Classes, Sections and Student Groups</span>
         </div>
 
-        <div className="grid grid-cols-4 gap-5 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
                 <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>25</h1>
                 <span className='text-[#666]'>Total Classes</span>
             </div>
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
-                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>25</h1>
-                <span className='text-[#666]'>Total Classes</span>
+                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>12</h1>
+                <span className='text-[#666]'>Grade Levels</span>
             </div>
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
-                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>25</h1>
-                <span className='text-[#666]'>Total Classes</span>
+                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>1,259</h1>
+                <span className='text-[#666]'>Total Students</span>
             </div>
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
-                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>25</h1>
-                <span className='text-[#666]'>Total Classes</span>
+                <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>79</h1>
+                <span className='text-[#666]'>Total Teachers</span>
             </div>
         </div>
 
         <div className="flex gap-5 mb-8">
-            <button onClick={() => setActive('classes')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'classes' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>All Classes</button>
-            <button onClick={() => setActive('sections')} className={`px-8 py-3 border border-[#e1e5e9] rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'sections' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Sections</button>
-            <button onClick={() => setActive('schedules')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'schedules' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Schedules</button>
+            <button onClick={() => setActive('classes')} className={`px-8 py-3 border border-[#e1e5e9]  hover:shadow-md active:scale-95 transition-all duration-200 rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'classes' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>All Classes</button>
+            <button onClick={() => setActive('sections')} className={`px-8 py-3 border border-[#e1e5e9] hover:shadow-md active:scale-95 transition-all duration-200 rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'sections' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Sections</button>
+            <button onClick={() => setActive('schedules')} className={`px-8 py-3 border border-[#e1e5e9]  hover:shadow-md active:scale-95 transition-all duration-200 rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'schedules' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Schedules</button>
          </div>
 
         {/* all classes, Sections and Schedules */}
         { active === 'classes' &&
-            <div className="bg-white p-6 mb-8 shadow rounded-md">
+        <div className="bg-white p-6 mb-8 shadow rounded-md">
             <div className="flex justify-between items-center mb-8">
                 <span className='text-[#333] text-2xl font-bold'>Class Management</span>
                 <button className='px-5 py-2 text-white bg-[#006b3f] rounded-md flex items-center gap-2'><FaPlus />Add Class</button>
             </div>
             
-            <div className="flex justify-center items-center gap-5 mb-8">
-                <div className="border border-[#666] rounded-md w-100 h-10 max-w-150 max-h-15 relative">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
-                </div>
-                <div className="flex justify-center items-center w-full relative">
-                    <div className="border border-[#666] rounded-md w-100 h-10 max-w-150 max-h-15">
-                        <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
-                    </div>
-                    <MdArrowBackIos className='rotate-270 absolute right-20 top-1' size={24}/>
-                </div>
-                <div className="flex justify-center items-center">
-                    <div className="flex items-center justify-center rounded-md w-30 h-10 border border-[#666] bg-white/80">
-                        <IoSearch size={24}/>
-                        <span>Search</span>
-                    </div>
-                </div>
+        <form className="grid grid-cols-1 md:grid-cols-[3fr_2fr_150px] gap-5 mb-4">
+            <div className="mb-4">
+                <input type="text" placeholder='Search Sections...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm focus:outline-[#006b3f]"/>
             </div>
+
+            <div className="mb-4">
+                <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg focus:outline-[#006b3f] transition-all duration-300 ease-in-out" required>
+                    <option value="">Select Class</option>
+                    <option value="All Classes">All Classes</option>
+                    <option value="Class 9">Class 9</option>
+                    <option value="Class 10">Class 10</option>
+                    <option value="Class 11">Class 11</option>
+                    <option value="Class 12">Class 12</option>
+                </select>
+            </div>
+
+            <button type='submit' className="flex items-center gap-2 w-fit cursor-pointer px-4 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4" aria-label='search classes'>
+                <IoSearchOutline size={24}/>
+                Search
+            </button>
+        </form>
 
             {/* All Classes */}
             <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
-
-                <div className="bg-white rounded-lg border-l-4 border-[#006b3f] p-6 shadow-[0_5px_20px_rgba(0,0,0,0.1)] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_25px_rgba(0,0,0,0.1)]">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className='text-[#006b3f] text-2xl font-bold mb-1'>Class 12A</h1>
-                    <div className='py-1 px-2.5 rounded-lg text-sm text-[#006b3f] font-medium bg-[#d1fae5]'>Active</div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Students</span>
-                            <span className='font-bold'>32</span>
+                {   allClasses.map((classs, index) => (
+                    <div key={index} className="bg-white rounded-2xl border-l-4 border-[#006b3f] p-6 shadow-[0_5px_20px_rgba(0,0,0,0.1)] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_25px_rgba(0,0,0,0.1)]">
+                        <div className="flex justify-between items-center mb-4">
+                            <h1 className='text-[#006b3f] text-2xl font-bold mb-1'>{classs.classNames}</h1>
+                        <div className='py-1 px-2.5 rounded-lg text-sm text-[#006b3f] font-medium bg-[#d1fae5]'>Active</div>
                         </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Class Teacher</span>
-                            <span className='font-bold'>Mr. Ali Kaydsane</span>
+                        <div className="flex justify-between items-center">
+                            <div className="flex flex-col">
+                                <span className='text-[#666]'>Students</span>
+                                <span className='font-bold'>{classs.students}</span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className='text-[#666]'>Class Teacher</span>
+                                <span className='font-bold'>{classs.classTeacher}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex justify-between items-center mt-4">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Room</span>
-                            <span className='font-bold'>008</span>
+                        <div className="flex justify-between items-center mt-4">
+                            <div className="flex flex-col">
+                                <span className='text-[#666]'>Room</span>
+                                <span className='font-bold'>{classs.room}</span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className='text-[#666]'>Schedule</span>
+                                <span className='font-bold'>{classs.schedule}</span>
+                            </div>
                         </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Schedule</span>
-                            <span className='font-bold'>Mon-Fri 8:00 AM</span>
+                        <div className="flex justify-between gap-1 text-sm mt-4">
+                            <button className='px-5 py-2 border border-[#e1e5e9] bg-[#f8f9fa] text-[#666] rounded-lg cursor-pointer'>View Details</button>
+                            <button className='px-5 py-2 border border-[#fcd116] bg-[#fcd116]  rounded-lg cursor-pointer'>Edit</button>
+                            <button className='px-5 py-2 border border-[#ce1126] bg-[#ce1126] text-white rounded-lg cursor-pointer'>Delete</button>
                         </div>
-                    </div>
-                    <div className="flex items-start gap-1 text-sm mt-8">
-                        <button className='px-5 py-2 border border-[#e1e5e9] bg-[#f8f9fa] text-[#666] rounded-lg'>View Details</button>
-                        <button className='px-5 py-2 border border-[#fcd116] bg-[#fcd116]  rounded-lg'>Edit</button>
-                        <button className='px-5 py-2 border border-[#ce1126] bg-[#ce1126] text-white rounded-lg'>Delete</button>
-                    </div>
-                </div>
-
-                <div className="bg-white rounded-lg border-l-4 border-[#006b3f] p-6 shadow-[0_5px_20px_rgba(0,0,0,0.1)] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_25px_rgba(0,0,0,0.1)]">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className='text-[#006b3f] text-2xl font-bold mb-1'>Class 12A</h1>
-                    <div className='py-1 px-2.5 rounded-lg text-sm text-[#006b3f] font-medium bg-[#d1fae5]'>Active</div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Students</span>
-                            <span className='font-bold'>32</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Class Teacher</span>
-                            <span className='font-bold'>Mr. Ali Kaydsane</span>
-                        </div>
-                    </div>
-                    <div className="flex justify-between items-center mt-4">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Room</span>
-                            <span className='font-bold'>008</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Schedule</span>
-                            <span className='font-bold'>Mon-Fri 8:00 AM</span>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-1 text-sm mt-8">
-                        <button className='px-5 py-2 border border-[#e1e5e9] bg-[#f8f9fa] text-[#666] rounded-lg'>View Details</button>
-                        <button className='px-5 py-2 border border-[#fcd116] bg-[#fcd116]  rounded-lg'>Edit</button>
-                        <button className='px-5 py-2 border border-[#ce1126] bg-[#ce1126] text-white rounded-lg'>Delete</button>
-                    </div>
-                </div>
-
-                <div className="bg-white rounded-lg border-l-4 border-[#006b3f] p-6 shadow-[0_5px_20px_rgba(0,0,0,0.1)] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_25px_rgba(0,0,0,0.1)]">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className='text-[#006b3f] text-2xl font-bold mb-1'>Class 12B</h1>
-                    <div className='py-1 px-2.5 rounded-lg text-sm text-[#006b3f] font-medium bg-[#d1fae5]'>Active</div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Students</span>
-                            <span className='font-bold'>40</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Class Teacher</span>
-                            <span className='font-bold'>Mr. Ahmed Abdulahi</span>
-                        </div>
-                    </div>
-                    <div className="flex justify-between items-center mt-4">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Room</span>
-                            <span className='font-bold'>010</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Schedule</span>
-                            <span className='font-bold'>Mon-Fri 8:00 AM</span>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-1 text-sm mt-8">
-                        <button className='px-5 py-2 border border-[#e1e5e9] bg-[#f8f9fa] text-[#666] rounded-lg'>View Details</button>
-                        <button className='px-5 py-2 border border-[#fcd116] bg-[#fcd116]  rounded-lg'>Edit</button>
-                        <button className='px-5 py-2 border border-[#ce1126] bg-[#ce1126] text-white rounded-lg'>Delete</button>
-                    </div>
-                </div>
-
-                <div className="bg-white rounded-lg border-l-4 border-[#006b3f] p-6 shadow-[0_5px_20px_rgba(0,0,0,0.1)] cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_25px_rgba(0,0,0,0.1)]">
-                    <div className="flex justify-between items-center mb-4">
-                        <h1 className='text-[#006b3f] text-2xl font-bold mb-1'>Class 12B</h1>
-                    <div className='py-1 px-2.5 rounded-lg text-sm text-[#006b3f] font-medium bg-[#d1fae5]'>Active</div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Students</span>
-                            <span className='font-bold'>38</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Class Teacher</span>
-                            <span className='font-bold'>Mr. Mohamed Warsame</span>
-                        </div>
-                    </div>
-                    <div className="flex justify-between items-center mt-4">
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Room</span>
-                            <span className='font-bold'>010</span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className='text-[#666]'>Schedule</span>
-                            <span className='font-bold'>Mon-Fri 8:00 AM</span>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-1 text-sm mt-8">
-                        <button className='px-5 py-2 border border-[#e1e5e9] bg-[#f8f9fa] text-[#666] rounded-lg'>View Details</button>
-                        <button className='px-5 py-2 border border-[#fcd116] bg-[#fcd116]  rounded-lg'>Edit</button>
-                        <button className='px-5 py-2 border border-[#ce1126] bg-[#ce1126] text-white rounded-lg'>Delete</button>
-                    </div>
-                </div>
+                    </div> ))}
             </div>
         </div>}
        
-        {/* Subjects */}
+        {/* Sections */}
         { active === 'sections' &&
             <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>Manage Subjects</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Add Subjects</button>
+                <span className='text-[#333] text-2xl font-bold'>Manage Sections</span>
+                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Add Section</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+        <form className="grid grid-cols-1 md:grid-cols-[3fr_2fr_150px] gap-5 mb-4">
+                <div className="mb-4">
+                    <input type="text" placeholder='Search Sections...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm focus:outline-[#006b3f]"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="mb-4">
+                    <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg focus:outline-[#006b3f] transition-all duration-300 ease-in-out" required>
+                        <option value="">Select Section</option>
+                        <option value="All Sections">All Sections</option>
+                        <option value="Section A">Section A</option>
+                        <option value="Section B">Section B</option>
+                        <option value="Section C">Section C</option>
+                        <option value="Section D">Section D</option>
+                    </select>
                 </div>
-            </div>
+
+                <button type='submit' className="flex items-center gap-2 w-fit cursor-pointer px-4 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    Search
+                </button>
+            </form>
 
             <table className='w-full border-collapse mt-4'>
                 <thead>
@@ -232,45 +155,20 @@ const ClassesSections = () => {
                     </tr>
                 </thead>
                 <tbody className='table-row-group border-inherit'>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Section A</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 8 1-6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mr. Mohamed Warsame</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Room 101</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Active</span></td>
+                    {   sections.map((section, index) => (
+                        <tr key={index} className="hover:bg-[#f8f9fa]">
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{section.sectionName}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{section.classs}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{section.students}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{section.teacher}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'>{section.room}</td>
+                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>{section.status}</span></td>
                         <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
+                            <button className='bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
                             <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
                             <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
                         </td>
-                    </tr>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Section A</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 8 1-6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mr. Mohamed Warsame</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Room 101</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Active</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
-                        </td>
-                    </tr>
-                    <tr className="hover:bg-[#f8f9fa]">
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>mathematics</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Section A</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Classe 8 1-6</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Mr. Mohamed Warsame</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'>Room 101</td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left'><span className='py-1 px-2.5 rounded-md text-sm font-medium bg-[#d1fae5]'>Active</span></td>
-                        <td className='p-4 border-b border-[#e1e5e9] text-left flex gap-2'>
-                            <button className='bg-[f8f9fa] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>View</button>
-                            <button className='bg-[#fcd116] text-[#333] border border-[#e1e5e9] px-4 py-2 rounded-md'>Edit</button>
-                            <button className='bg-[#ce1126] text-white border border-[#e1e5e9] px-4 py-2 rounded-md'>Delete</button>
-                        </td>
-                    </tr>
+                    </tr> ))}
                 </tbody>
             </table>
         </div>} 
@@ -279,19 +177,27 @@ const ClassesSections = () => {
         { active === 'schedules' &&
             <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>Manage Subjects</span>
+                <span className='text-[#333] text-2xl font-bold'>Class Schedule</span>
                 <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Add Subjects</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+        <form className="grid grid-cols-1 md:grid-cols-[3fr_2fr_150px] gap-5 mb-4">
+               <div className="mb-4">
+                    <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" required>
+                        <option value="">Select Class</option>
+                        <option value="All Classes">All Classes</option>
+                        <option value="Class 9">Class 9</option>
+                        <option value="Class 10">Class 10</option>
+                        <option value="Class 11">Class 11</option>
+                        <option value="Class 12">Class 12</option>
+                    </select>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
-                </div>
-            </div>
+
+                <button type='submit' className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    Search
+                </button>
+            </form>
             
             <div className="text-center rounded-md bg-[#f8f9fa] p-8 text-[#666]">
                 <div className="flex flex-col justify-center items-center gap-1">
@@ -301,7 +207,7 @@ const ClassesSections = () => {
                 </div>
             </div>
         </div>} 
-    </div>
+    </section>
   )
 }
 

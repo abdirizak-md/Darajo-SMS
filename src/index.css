@@ -1,6 +1,7 @@
 @import "tailwindcss";
 body {
-    overflow: hidden;;
+    overflow: hidden;
+    background-color: #f5f7fa
 }
 
 /* ===== Custom Scrollbar ===== */

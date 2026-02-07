@@ -2,7 +2,7 @@ import React from 'react'
 
 const ExamsMarks = () => {
   return (
-    <div>ExamsMarks</div>
+    <section>ExamsMarks</section>
   )
 }
 

@@ -15,6 +15,7 @@ import StaffDirectory from './pages/StaffDirectory.jsx'
 import Payroll from './pages/Payroll.jsx'
 import StudentInfo from './pages/StudentInfo.jsx'
 import AttendanceReports from './pages/AttendanceReports.jsx'
+import PlainLayout from './PlainLayout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
         path: '/',
         element: <Dashboard />
       },
+      
+    ]
+  },
+  {
+    element: <PlainLayout />,
+    children: [
       {        
         path: '/classes',
         element: <ClassesSections />
