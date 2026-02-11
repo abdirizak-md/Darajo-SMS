@@ -131,4 +131,4 @@ const ASide = () => {
   )
 }
 
-export default ASidehjkl;
+export default ASide;

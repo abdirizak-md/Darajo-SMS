@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { FaBookOpenReader, FaPlus } from 'react-icons/fa6'
-import { IoSearch, IoSearchOutline } from 'react-icons/io5'
+import { IoClose, IoSearch, IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import lessonPlans from '../Data/lessonPlans'
 
 const LessonPlans = () => {
     const [active, setActive] = useState('plans');
+    const [close, setClose] = useState(false)
   return (
     <section className='max-w-300 mx-auto p-8 bg-[#f5f7fa] h-screen overflow-y-auto custom-scrollbar'>
         <Link to='/' className="flex justify-center w-fit items-center cursor-default p-3 rounded-md bg-[#006b3f] mb-8 transition-all duration-300 hover:-translate-y-1">
@@ -51,7 +52,7 @@ const LessonPlans = () => {
           <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
                 <span className='text-[#333] text-2xl font-bold'>Lesson Plans Overviews</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Lesson Plan</button>
+                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2' onClick={() => setClose(!close)}><FaPlus />Create Lesson Plan</button>
             </div>
             
             <form className="grid grid-cols-[1fr_1fr_1fr] gap-5 mb-4">
@@ -217,23 +218,24 @@ const LessonPlans = () => {
                 </div>
             </div>
           </div>}
+
         {/* box modal */}
-        {/* <div className="fixed z-1000 left-0 top-0 w-100 h-100 bg-[rgba(0,0,0,0.5)] flex items-center justify-center ">
-            <div className="bg-white rounded-lg shadow-[0_5px_15px_rgba(0,0,0,0.)] w-250 h-90 overflow-auto custom-scrollbar">
-            <div className="flex items-center justify-between p-6 border-b border-gray-400">
-                <h1 className="text-2xl text-[#006b3f]">Create New Lesson Plan</h1>
-                <AiOutlineClose />
-            </div>
-            <form className="p-6">
-                <div className="grid grid-cols-[1fr,1fr] gap-4">
+        {   close && 
+        <div className="fixed z-1000 left-0 top-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex items-center justify-center ">
+            <div className="bg-white rounded-lg shadow-[0_5px_15px_rgba(0,0,0,0.3)] w-[50%] max-w-300 max-h-[90vh] overflow-y-auto custom-scrollbar">
+                <div className="flex items-center justify-between p-6 border-b border-gray-400">
+                    <h1 className="text-2xl text-[#006b3f] font-bold">Create New Lesson Plan</h1>
+                    <IoClose className='font-bold cursor-pointer hover:text-[#ce1126] transition-all duration-200'  size={32} onClick={() => setClose(!close)}/>
+                </div>
+                <form className="p-6">
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Lesson Title *</label>
-                    <input type="text" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out"/>
+                    <input type="text" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out"/>
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Select Subject *</label>
-                    <select name="subject" id="subject" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-sm transition-all duration-300 ease-in-out" required>
+                    <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-sm transition-all duration-300 ease-in-out" required>
                     <option value="">Select Subject</option>
                     <option value="Mathematics">Mathematics</option>
                     <option value="English">English</option>
@@ -244,7 +246,7 @@ const LessonPlans = () => {
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Class *</label>
-                    <select name="subject" id="subject" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-sm transition-all duration-300 ease-in-out" required>
+                    <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-sm transition-all duration-300 ease-in-out" required>
                     <option value="">Select Class</option>
                     <option value="Class 1">Class 1</option>
                     <option value="Class 2">Class 2</option>
@@ -255,17 +257,17 @@ const LessonPlans = () => {
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Duration (minutes) *</label>
-                    <input type="number" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out"/>
+                    <input type="number" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out"/>
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Week *</label>
-                    <input type="number" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out"/>
+                    <input type="number" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out"/>
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Teacher *</label>
-                    <select name="subject" id="subject" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-sm transition-all duration-300 ease-in-out" required>
+                    <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-sm transition-all duration-300 ease-in-out" required>
                     <option value="">Select Teacher</option>
                     <option value="Class 1">Mr. Mohamed Warsame</option>
                     <option value="Class 2">Mr. Ahmed Mohamed</option>
@@ -276,32 +278,31 @@ const LessonPlans = () => {
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Lesson Description *</label>
-                    <textarea type="text" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="Desctiption what students will learn in this lesson"></textarea>
+                    <textarea type="text" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="Desctiption what students will learn in this lesson"></textarea>
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Leaning Objectives *</label>
-                    <textarea type="text" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="List the specific learning objectives in this lesson"></textarea>
+                    <textarea type="text" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="List the specific learning objectives in this lesson"></textarea>
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Required Materials *</label>
-                    <textarea type="text" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="List any materials, resources or equipment needed"></textarea>
+                    <textarea type="text" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="List any materials, resources or equipment needed"></textarea>
                 </div>
 
                 <div className="mb-4">
                     <label htmlFor="lessonTitle" className="font-medium block mb-2 text-[#333]">Lesson Activities *</label>
-                    <textarea type="text" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="Describe main activities and teaching methods"></textarea>
+                    <textarea type="text" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" placeholder="Describe main activities and teaching methods"></textarea>
                 </div>
 
                 <div className="flex gap-4 justify-end mt-8 pt-4 border-t border-[#e1e5e9]">
-                    <button className="bg-[#f8f9fa] text-[#333] border border-[#e1e5e9] p-2.5 rounded-md cursor-pointer font-medium inline-flex items-center gap-2 transition-all duration-300 ease-in-out">Cancel</button>
-                    <button className="bg-[#006b3f] text-white border border-[#e1e5e9] p-2.5 rounded-md cursor-pointer font-medium inline-flex items-center gap-2 transition-all duration-300 ease-in-out">Create Lesson Plan</button>
+                    <button className="bg-[#f8f9fa] hover:bg-[#e9ecef] text-[#333] border border-[#e1e5e9] px-6 py-3 rounded-md cursor-pointer font-medium inline-flex items-center gap-2 transition-all duration-300 ease-in-out" onClick={() => setClose(!close)}>Cancel</button>
+                    <button className="bg-[#006b3f] hover:bg-[#005a35] text-white border border-[#e1e5e9] px-6 py-3 rounded-md cursor-pointer font-medium inline-flex items-center gap-2 transition-all duration-300 ease-in-out">Create Lesson Plan</button>
                 </div>
-                </div>
-            </form>
+                </form>
             </div>
-        </div> */}
+        </div>}
 
     </section>
   )

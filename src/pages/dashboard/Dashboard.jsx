@@ -1,5 +1,6 @@
 import { FaArrowDown, FaArrowUp, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaChalkboardUser, FaClock, FaEnvelope, FaGraduationCap, FaMoneyBill, FaSchool, FaUserPlus } from 'react-icons/fa6';
 import CardComponent from '../../components/CardComponent';
+import recentActivities from '../../Data/recentActivities';
 const Dashboard = () => {
 
   const schoolData = [
@@ -74,17 +75,20 @@ const Dashboard = () => {
           {/* recents activits */}
           <div className="bg-white rounded-md py-6 shadow-[0_5px_15px_rgba(0,0,0,0.2)] w-full">
             <h1 className='text-2xl mb-6 px-6 text-[#333] font-bold'>Recent  Activities</h1>
-            <div className="flex items-center gap-4 px-6 py-3 border-b border-gray-200 hover:bg-[#00000007] transition-all duration-200">
-              <div className="bg-[#006b3f] p-3 rounded-full">
-                <FaUserPlus className='text-white' size={20}/>
-              </div>
-              <div className="flex flex-col">
-                <h1 className='text-[#333] font-semibold mb-2'>New Student Admitted: Rizeh Moha</h1>
-                <span className='text-[#666]'>5 minutes ago</span>
-              </div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(1fr))] gap-4 mb-8">
+              { recentActivities.map((activity, index) => (
+                <div key={index} className="flex items-center gap-4 px-6 py-3 border-b border-gray-200 hover:bg-[#00000007] transition-all duration-200">
+                <div className={`bg-[${activity.iconColor}] p-3 rounded-full`}>
+                  {<activity.icon className='text-white' size={20}/>}
+                </div>
+                <div className="flex flex-col">
+                  <h1 className='text-[#333] font-semibold mb-2'>{activity.activityName}</h1>
+                  <span className='text-[#666]'>{activity.timeEslap}</span>
+                </div>
+              </div> )) }
             </div>
 
-            <div className="flex items-center gap-4 px-6 py-3 border-b border-gray-200 hover:bg-[#00000007] transition-all duration-200">
+            {/* <div className="flex items-center gap-4 px-6 py-3 border-b border-gray-200 hover:bg-[#00000007] transition-all duration-200">
               <div className="bg-[#ce1126] p-3 rounded-full">
                 <FaMoneyBill className='text-white' size={20}/>
               </div>
@@ -102,7 +106,7 @@ const Dashboard = () => {
                 <h1 className='text-[#333] font-semibold mb-2'>Exam Result Published: English</h1>
                 <span className='text-[#666]'>1 hour ago</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="py-15"></div>

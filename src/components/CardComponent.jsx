@@ -5,7 +5,7 @@ const CardComponent = ({schoolData}) => {
             {schoolData.map((data, index) => (
               <div key={index} className={`bg-white rounded-2xl  border-l-4 border-[${data.colors}] p-6 shadow-[0_5px_15px_rgba(0,0,0,0.2)] cursor-pointer transition-all duration-300 hover:-translate-y-2`}>
                 <div className="flex justify-between items-center mb-4">
-                  <h1 className='text-[#666]'>{data.title}</h1>
+                  <h1 className='text-[#666] font-medium'>{data.title}</h1>
                   <div className={`bg-[${data.colorr}] p-3 rounded-lg`}>
                     {data.icon}
                   </div>
