@@ -1,132 +1,43 @@
-import { useState } from 'react';
-import { FaBook, FaCalendar, FaCalendarCheck, FaChalkboardUser, FaClipboardCheck, FaClock, FaFile, FaGraduationCap, FaMoneyBill, FaTachographDigital, FaUserGraduate, FaUsers } from 'react-icons/fa6';
+import { useEffect, useState } from 'react';
+import { FaUserGraduate } from 'react-icons/fa6';
 import { MdArrowBackIos } from 'react-icons/md';
 import SidebarComponent from '../../components/SidebarComponent';
-
-
-const dashboard = [
-  {
-    label: 'Dashboard',
-    icon: <FaTachographDigital size={20} />,
-    path: '/',
-  },
-]
-
-const academics = [
-  {
-    label: 'Classes & Sections',
-    icon: <FaGraduationCap size={20} />,
-    path: '/classes',
-  },
-  {
-    label: 'Subjects & Assignments',
-    icon: <FaBook size={20} />,
-    path: '/subjects',
-  },
-  {
-    label: 'Lesson Plans',
-    icon: <FaChalkboardUser size={20} />,
-    path: '/lesson-plans',
-  },
-  {
-    label: 'Study Materials',
-    icon: <FaFile size={20} />,
-    path: '/materials',
-  },
-  {
-    label: 'Exams & Marks',
-    icon: <FaClipboardCheck size={20} />,
-    path: '/exams',
-  },
-]
-
-
-const feesAccounts = [
-  { label: 'Fees Collection', icon: <FaMoneyBill size={20} />, path: '/fees-collection' },
-  { label: 'Pending Fees', icon: <FaClock size={20} />, path: '/pending-fees' },
-]
-
-const staffManagements = [
-  { label: 'Staff Directory', icon: <FaUsers size={20} />, path: '/staff-directory' },
-  { label: 'Attendance Payroll', icon: <FaCalendarCheck size={20} />, path: '/payroll' },
-]
-
-const studentManagement = [
-  { label: 'Student Info', icon: <FaUserGraduate size={20} />, path: '/student-info' },
-  { label: 'Attendance Reports', icon: <FaCalendar size={20} />, path: '/attendance-reports' },
-]
+import { dashboard } from '../../Data/sideBar';
+import { academics } from '../../Data/sideBar';
+import { feesAccounts } from '../../Data/sideBar';
+import { staffManagements } from '../../Data/sideBar';
+import { studentManagement } from '../../Data/sideBar';
 
 
 const ASide = () => {
-  const [open, setOpen] = useState(window.innerWidth >= 768);
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    setOpen(window.innerWidth >= 768);
+  }, []);
+
+  
   return (
-    <aside className={`flex flex-col bg-[#006b3f] h-screen transition-all duration-300 overflow-y-auto custom-scrollbar ${open ? 'w-70' : 'w-15'}`}>
-      <div className="flex justify-between p-5 w-full border-b border-gray-500 text-white items-center">
-          { open && <FaUserGraduate  className="md:size-8"/> } 
-          <button onClick={() => setOpen(!open)}  aria-label='close sidebar' className='p-2 cursor-pointer hover:bg-amber-50/20 flex justify-center items-center h-fit rounded-lg w-fit'>
-            <MdArrowBackIos className={`transition-all duration-300  ${open ? 'rotate-0' : 'rotate-180'}`}/>
+    <aside className={`hidden lg:flex lg:flex-col lg:pb-4 lg:bg-linear-to-b lg:from-emerald-900 lg:via-emerald-800 lg:to-emerald-950 lg:shadow-xl lg:border-r lg:border-white/10 transition-all duration-300 lg:h-full overflow-y-auto custom-scrollbar ${open ? 'w-70' : 'w-22'}`}>
+      <div className="flex justify-between p-4 border-b border-white/10 items-center">
+          { open && <div className="flex items-center gap-2">
+            <div className="p-2 rounded-xl bg-white/10">
+              <FaUserGraduate className="size-6 text-white" />
+            </div>
+            <span className="text-white font-semibold tracking-wide">Darajo</span>
+          </div>} 
+          <button onClick={() => setOpen(!open)} aria-expanded={open} className="p-2 rounded-xl hover:bg-white/15 transition-all"
+          >
+            <MdArrowBackIos className={`text-white transition-transform duration-300 ${ open ? "rotate-0" : "rotate-180" }`} />
           </button>
       </div>
       <div className="flex flex-col">
-        {/* <div className="flex flex-col py-2">
-            {open && <p className='text-sm text-[#ffffffb3] font-medium py-1 pl-5'>DASHBOARD</p>}
-          <NavLink to='/' className={({isActive}) => `flex items-center gap-3 w-full px-5 py-3 text-white hover:bg-amber-50/20  transition-all duration-100 relative group ${isActive ? 'bg-amber-50/30 border-l-4 border-amber-300' : ''}`}>
-            <FaTachographDigital size={20} />
-            {open && <span className='text-sm font-medium'>Dashboard</span>}
-            {!open && <span className='pointer-events-none absolute left-full ml-3 rounded-lg bg-gray-900 py-1 text-white opacity-0 shadow transition-opacity group-hover:opacity-100 z-100'>Dashboard</span>}
-          </NavLink>
-        </div> */}
-        <SidebarComponent title='DASHBOARD' academics={dashboard} open={open} />
-        {/* <div className="flex flex-col py-2 cursor-default">
-            {open && <p className='text-[12px] text-[#ffffffb3] font-medium py-1 pl-5'>ACADEMICS</p>}
-            { academics.map((item, index) => (
-              <NavLink key={index} to={item.path} className={({isActive}) => `flex items-center gap-3 w-full px-5 py-3 text-white hover:bg-amber-50/20  transition-all duration-100 relative group ${isActive ? 'bg-amber-50/30 border-l-4 border-amber-300' : ''}`}>
-                {item.icon}
-                {open && <span className='text-sm font-medium'>{item.label}</span>}
-                {!open && <span className='pointer-events-none absolute left-full ml-3 rounded-lg bg-gray-900 px-3 py-1 text-white opacity-0 shadow transition-opacity group-hover:opacity-100'>{item.label}</span>}
-            </NavLink>
-            ))
-          }
-        </div> */}
-        <SidebarComponent title='ACADEMICS' academics={academics} open={open} />
-        {/* <div className="flex flex-col py-2">
-            {open && <p className='text-[12px] text-[#ffffffb3] font-medium py-1 pl-5'>FEES & ACCOUNTS</p>}
-            { feesAccounts.map((item, index) => (
-              <NavLink key={index} to={item.path} className={({isActive}) => `flex items-center gap-3 w-full px-5 py-3 text-white hover:bg-amber-50/20  transition-all duration-100 relative group ${isActive ? 'bg-amber-50/30 border-l-4 border-amber-300' : ''}`}>
-                {item.icon}
-               {open && <span className='text-sm font-medium'>{item.label}</span>}
-               {!open && <span className='pointer-events-none absolute left-full ml-3 rounded-lg bg-gray-900 px-3 py-1 text-white opacity-0 shadow transition-opacity group-hover:opacity-100'>{item.label}</span>}
-            </NavLink>
-            ))
-          }
-        </div> */}
-        <SidebarComponent title='FEES & ACCOUNTS' academics={feesAccounts} open={open} />
-        {/* <div className="flex flex-col py-2">
-            {open && <p className='text-[12px] text-[#ffffffb3] font-medium py-1 pl-5'>STAFF MANAGEMENT</p>}
-            { staffManagements.map((item, index) => (
-              <NavLink key={index} to={item.path} className={({isActive}) => `flex items-center gap-3 w-full px-5 py-3 text-white hover:bg-amber-50/20  transition-all duration-100 group relative ${isActive ? 'bg-amber-50/30 border-l-4 border-amber-300' : ''}`}>
-                {item.icon}
-               {open && <span className='text-sm font-medium'>{item.label}</span>}
-               {!open && <span className='pointer-events-none absolute left-full ml-3 rounded-lg bg-gray-900 px-3 py-1 text-white opacity-0 shadow transition-opacity group-hover:opacity-100'>{item.label}</span>}
-            </NavLink>
-            ))
-          }
-        </div> */}
-        <SidebarComponent title='STAFF MANAGEMENTS' academics={staffManagements} open={open} />
-        {/* <div className="flex flex-col py-2 mb-8">
-            {open && <p className='text-[12px] text-[#ffffffb3] font-medium py-1 pl-5'>STUDENT MANAGEMENT</p>}
-            { studentManagement.map((item, index) => (
-              <NavLink key={index} to={item.path} className={({isActive}) =>`flex items-center gap-3 w-full px-5 py-3 text-white hover:bg-amber-50/20  transition-all duration-100 relative group ${isActive ? 'bg-amber-50/30 border-l-4 border-amber-300' : ''}`}>
-                {item.icon}
-               {open && <span className='text-sm font-medium'>{item.label}</span>}
-               {!open && <span className='pointer-events-none absolute left-full ml-3 rounded-lg bg-gray-900 px-3 py-1 text-white opacity-0 shadow transition-opacity group-hover:opacity-100'>{item.label}</span>}
-            </NavLink>
-            ))
-          }
-        </div> */}
-        <SidebarComponent title='STUDNT MANAGEMENTS' academics={studentManagement} open={open} />
+        <SidebarComponent title='DASHBOARD' items={dashboard} open={open} />
+        <SidebarComponent title='ACADEMICS' items={academics} open={open} />
+        <SidebarComponent title='FEES & ACCOUNTS' items={feesAccounts} open={open} />
+        <SidebarComponent title='STAFF MANAGEMENT' items={staffManagements} open={open} />
+        <SidebarComponent title='STUDNT MANAGEMENT' items={studentManagement} open={open} />
       </div>
-      <div className="py-15"></div>
     </aside>
   )
 }

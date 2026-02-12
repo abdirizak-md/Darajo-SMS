@@ -16,11 +16,11 @@ const LessonPlans = () => {
         </Link>
     
         <div className="bg-white rounded-md p-8 shadow-[0_5px_20px_rgba(0,0,0,0.1)] mb-8">
-            <h1 className='text-[#006b3f] text-4xl font-bold mb-4'>🏠 Lesson Plans</h1>
-            <span className='text-[#666]'>Create, Manage, and Organize Lesson Plans and Study Materials</span>
+            <h1 className='text-[#006b3f] lg:text-4xl text-2xl font-bold mb-4'>🏠 Lesson Plans</h1>
+            <span className='text-[#666] text-sm'>Create, Manage, and Organize Lesson Plans and Study Materials</span>
         </div>
     
-        <div className="grid grid-cols-4 gap-5 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)]">
                 <h1 className='text-[#006b3f] text-4xl font-bold mb-1'>45</h1>
                 <span className='text-[#666]'>Total Lesson Plans</span>
@@ -39,9 +39,9 @@ const LessonPlans = () => {
             </div>
         </div>
     
-        <div className="flex gap-5 mb-8">
+        <div className="lg:flex md:flex grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4 mb-4">
             <button onClick={() => setActive('plans')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'plans' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>All Plans</button>
-            <button onClick={() => setActive('maths')} className={`px-8 py-3 border border-[rgb(225,229,233)] rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'maths' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Mathematics</button>
+            <button onClick={() => setActive('maths')} className={`px-8 py-3 border border-[#e1e5e9] rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'maths' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Mathematics</button>
             <button onClick={() => setActive('English')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'English' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>English</button>
             <button onClick={() => setActive('Physics')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'Physics' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Physics</button>
             <button onClick={() => setActive('Biology')} className={`px-8 py-3 border border-[#e1e5e9]  rounded-md shadow-[0_5px_20px_rgba(0,0,0,0.1)] ${active == 'Biology' ? 'bg-[#006b3f] text-white' : 'bg-white'}`}>Biology</button>
@@ -51,17 +51,17 @@ const LessonPlans = () => {
         { active === 'plans' &&
           <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>Lesson Plans Overviews</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2' onClick={() => setClose(!close)}><FaPlus />Create Lesson Plan</button>
+                <span className='text-[#333] lg:text-2xl font-bold'>Lesson Plans Overviews</span>
+                <button className='lg:px-5 px-3 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2' onClick={() => setClose(!close)}><FaPlus />Create Lesson Plan</button>
             </div>
             
-            <form className="grid grid-cols-[1fr_1fr_1fr] gap-5 mb-4">
-                <div className="mb-4">
-                    <input type="text" placeholder='Search Classes...' className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
+            <form className="grid grid-cols-1 lg:grid-cols-[3fr_150px] md:grid-cols-[3fr_2fr_150px] gap-3">
+                <div className="">
+                    <input type="text" placeholder='Search Classes...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
 
-                <div className="mb-4">
-                    <select name="subject" id="subject" className="w-100 p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" required>
+                <div className="">
+                    <select name="subject" id="subject" className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out" required>
                         <option value="">All Classes</option>
                         <option value="Class 9">Class 9</option>
                         <option value="Class 10">Class 10</option>
@@ -115,19 +115,20 @@ const LessonPlans = () => {
         { active === 'maths' &&
           <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>Mathematics Lesson Plan</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Maths Lesson</button>
+                <span className='text-[#333] lg:text-2xl font-bold'>Mathematics Lesson Plan</span>
+                <button className='lg:px-5 px-3 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Maths</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-1 lg:grid-cols-[3fr_150px] md:grid-cols-[3fr_2fr_150px] gap-3">
+                <div className="">
+                    <input type="text" placeholder='Search Classes...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    <button>Search</button>
                 </div>
-            </div>
+            </form>
             
             <div className="text-center rounded-md bg-[#f8f9fa] p-8 text-[#666]">
                 <div className="flex flex-col justify-center items-center gap-1">
@@ -142,19 +143,20 @@ const LessonPlans = () => {
         { active === 'English' &&
           <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>English Lesson Plan</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create English Lesson</button>
+                <span className='text-[#333] lg:text-2xl font-bold'>English Lesson Plan</span>
+                <button className='lg:px-5 px-3 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create English</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-1 lg:grid-cols-[3fr_150px] md:grid-cols-[3fr_2fr_150px] gap-3">
+                <div className="">
+                    <input type="text" placeholder='Search Classes...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    <button>Search</button>
                 </div>
-            </div>
+            </form>
             
             <div className="text-center rounded-md bg-[#f8f9fa] p-8 text-[#666]">
                 <div className="flex flex-col justify-center items-center gap-1">
@@ -169,19 +171,20 @@ const LessonPlans = () => {
         { active === 'Physics' &&
           <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>Physics Lesson Plan</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Physics Lesson</button>
+                <span className='text-[#333] lg:text-2xl font-bold'>Physics Lesson Plan</span>
+                <button className='lg:px-5 px-3 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Physics</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-1 lg:grid-cols-[3fr_150px] md:grid-cols-[3fr_2fr_150px] gap-3">
+                <div className="">
+                    <input type="text" placeholder='Search Classes...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    <button>Search</button>
                 </div>
-            </div>
+            </form>
             
             <div className="text-center rounded-md bg-[#f8f9fa] p-8 text-[#666]">
                 <div className="flex flex-col justify-center items-center gap-1">
@@ -196,19 +199,20 @@ const LessonPlans = () => {
         { active === 'Biology' &&
           <div className="bg-white p-6 mb-6 shadow rounded-md">
             <div className="flex justify-between items-center mb-4">
-                <span className='text-[#333] text-2xl font-bold'>Biology Lesson Plan</span>
-                <button className='px-5 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Biology Lesson</button>
+                <span className='text-[#333] lg:text-2xl font-bold'>Biology Lesson Plan</span>
+                <button className='lg:px-5 px-3 py-2 cursor-pointer text-white bg-[#006b3f] rounded-md inline-flex items-center gap-2'><FaPlus />Create Biology Lesson</button>
             </div>
             
-            <div className="flex gap-5 mb-8">
-                <div className="border flex-6 border-[#666] rounded-md w-full h-10">
-                    <input type="text" name="search" id="search" placeholder="Search students, teachers, fees, and exam..." className="w-full h-full px-3 outline-none" />
+            <form className="grid grid-cols-1 lg:grid-cols-[3fr_150px] md:grid-cols-[3fr_2fr_150px] gap-3">
+                <div className="">
+                    <input type="text" placeholder='Search Classes...' className="w-full p-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out placeholder:text-sm"/>
                 </div>
-                <div className=" flex flex-1 items-center px-5 justify-center rounded-md w-fit h-10 border border-[#666] gap-2 bg-white/80">
-                    <IoSearch size={18}/>
-                    <span className='text-[#333] cursor-default'>Search</span>
+
+                <div className="flex items-center gap-2 w-fit cursor-pointer px-5 py-2.5 border border-[#e1e5e9] rounded-md text-lg transition-all duration-300 ease-in-out mb-4">
+                    <IoSearchOutline size={24}/>
+                    <button>Search</button>
                 </div>
-            </div>
+            </form>
             
             <div className="text-center rounded-md bg-[#f8f9fa] p-8 text-[#666]">
                 <div className="flex flex-col justify-center items-center gap-1">

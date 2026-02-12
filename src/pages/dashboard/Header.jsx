@@ -5,65 +5,48 @@ import { MdArrowForwardIos } from "react-icons/md";
 const Header = () => {
   const [hide, setHide] = useState(true);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
   return (
-    <header className="flex w-full bg-white min-h-24 px-4 md:px-6 py-4 shadow-[0_5px_20px_rgba(0,0,0,0.1)] gap-6 items-center">
+    <header className="hidden lg:bg-white lg:w-full lg:max-h-25 lg:px-6 lg:py-4 lg:flex lg:shadow-2xl md:flex md:max-h-25 md:w-full md:px-6 md:py-2 md:bg-white md:shadow-2xl">
 
       {/* Logo Section */}
-      <div className="flex items-center gap-3 md:gap-5 flex-1">
-        <div className="flex flex-col">
-          <h1 className="text-xl md:text-3xl font-medium text-[#006b3f]">
-            Darajo SchoolMS
-          </h1>
-          <p className="text-[#666] hidden md:block">
-            Complete School Management System
-          </p>
-        </div>
+      <div className="lg:flex lg:flex-1 lg:flex-col md:flex md:flex-1 md:flex-col">
+        <h1 className="text-[#006b3f] lg:text-4xl lg:font-black md:text-lg md:font-bold">Darajo SchoolMS</h1>
+        <p className="text-[#666] lg:text-sm md:text-[12px]">Complete School Management System</p>
       </div>
 
       {/* Search */}
-      <div className="hidden md:flex flex-1 justify-center items-center">
-        <div className="border border-[#666] rounded-l-full w-[320px] h-10 relative">
-          <input type="text"
-            aria-label="Global search"
-            placeholder="Search students, teachers, fees, and exam..."
-            className="w-full h-full px-4 outline-none bg-transparent" />
+      <form onSubmit={handleSubmit} className="lg:flex lg:flex-2 lg:items-center lg:px-6 md:flex md:flex-2 md:items-center md:px-6">
+        <div className="lg:flex lg:w-full lg:rounded-full lg:border lg:border-black/40 md:flex md:w-full md:rounded-full md:border md:border-black/40">
+          <input id="searchBar" type="text" aria-label="Global search" placeholder="Search students, teachers, fees, and exams..." className="lg:w-full lg:px-4 lg:py-1 lg:focus:outline-2 lg:focus:outline-[#0e006b] lg:focus:rounded-l-full md:w-full md:px-4 md:py-1 md:text-sm md:focus:outline-2 md:focus:outline-[#0e006b] md:focus:rounded-l-full"/>
+          <button type="submit" aria-label="Submit search" className="lg:w-fit lg:h-fit lg:px-4 lg:py-1 lg:text-lg lg:border-l lg:bg-black/5 md:w-fit md:h-fit md:px-4 md:py-1 md:text-md md:border-l md:bg-black/5 cursor-pointer" ><IoSearch size={22} /></button>
         </div>
-
-        <button aria-label="Submit search"
-          className="flex items-center justify-center rounded-r-full w-14 h-10 border border-[#666] bg-white/80" >
-          <IoSearch size={22} />
-        </button>
-      </div>
+      </form>
 
       {/* Right Side */}
-      <div className="flex items-center gap-4 md:gap-6 flex-1 justify-end">
-
+      <div className="lg:flex lg:justify-between lg:flex-1 lg:gap-4 md:flex md:justify-between md:flex-1 md:gap-3">
+        <div className="lg:w-full md:w-full"></div>
+        <div className="lg:flex lg:flex-1 lg:gap-4 md:flex md:flex-1 md:gap-3">
         {/* Notifications */}
-        <button aria-label="Notifications" className="relative" >
-          <IoNotificationsSharp size={22} />
-          <span className="flex items-center justify-center text-[10px] text-white bg-red-500 w-4 h-4 rounded-full absolute right-0 -top-1">
-            5
-          </span>
+        <button aria-label="Notifications" className="lg:relative md:relative">
+          <IoNotificationsSharp size={24} />
+          <div className="lg:w-5 lg:h-5 lg:bg-red-600 lg:rounded-full lg:text-white lg:text-sm lg:absolute lg:top-4 lg:left-2 md:w-5 md:h-5 md:bg-red-600 md:rounded-full md:text-white md:text-sm md:absolute md:top-4 md:left-2">5</div>
         </button>
-
         {/* User */}
-        <div className="flex items-center gap-2 p-2 md:p-3 hover:bg-gray-50 rounded-lg">
-          <span aria-hidden="true"
-            className="bg-linear-to-l from-[#006b3f] to-[#fcd116] text-white flex items-center justify-center text-base md:text-lg w-9 h-9 md:w-10 md:h-10 rounded-full" >
-            A
-          </span>
+        <div className="lg:flex lg:items-center lg:gap-2 lg:hover:bg-gray-50 lg:rounded-lg md:flex md:items-center md:gap-1 md:hover:bg-gray-50 md:rounded-lg">
+          <div className="lg:w-10 lg:h-10 lg:flex lg:items-center lg:justify-center lg:text-lg lg:bg-linear-to-l lg:from-[#006b3f] lg:to-[#fcd116] lg:text-white lg:rounded-full md:w-9 md:h-9 md:flex md:items-center md:justify-center md:text-md md:bg-linear-to-l md:from-[#006b3f] md:to-[#fcd116] md:text-white md:rounded-full" >A</div>
 
-          {hide && (
-            <span className="text-[#666] hidden sm:block transition-all">
-              Admin
-            </span>
-          )}
+          <div className="lg:flex lg:gap-2 lg:px-2 transition-all duration-200 md:flex md:gap-1 md:px-2">
+            {hide && ( <span className="text-[#666] transition-all">Admin</span> )}
 
-          <button onClick={() => setHide(!hide)}
-            aria-label="Toggle user menu"
-            className="transition-transform duration-300" >
-            <MdArrowForwardIos className={`${hide ? "-rotate-90" : "rotate-90"}`}/>
-          </button>
+            <button onClick={() => setHide(!hide)} aria-label="Toggle user menu" className="transition-all duration-200" >
+              <MdArrowForwardIos className={`${hide ? "-rotate-90" : "rotate-90"}`}/>
+            </button>
+          </div>
+        </div>
+
         </div>
 
       </div>
