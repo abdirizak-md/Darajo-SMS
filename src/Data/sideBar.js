@@ -2,7 +2,7 @@ import { FaBook, FaCalendar, FaCalendarCheck, FaChalkboardUser, FaClipboardCheck
 
 export const dashboard = [
       {
-        label: 'Dashboard',
+        label: 'Overview',
         icon: FaTachographDigital,
         path: '/',
       },

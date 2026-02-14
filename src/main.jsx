@@ -16,6 +16,7 @@ import Payroll from './pages/Payroll.jsx'
 import StudentInfo from './pages/StudentInfo.jsx'
 import AttendanceReports from './pages/AttendanceReports.jsx'
 import PlainLayout from './PlainLayout.jsx'
+import { TooltipProvider } from './context/contextToolTip.jsx'
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <TooltipProvider>
+      <RouterProvider router={router} />
+    </TooltipProvider>
   </StrictMode>,
 )

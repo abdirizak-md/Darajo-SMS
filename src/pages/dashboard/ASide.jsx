@@ -1,45 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaUserGraduate } from 'react-icons/fa6';
-import { MdArrowBackIos } from 'react-icons/md';
-import SidebarComponent from '../../components/SidebarComponent';
-import { dashboard } from '../../Data/sideBar';
-import { academics } from '../../Data/sideBar';
-import { feesAccounts } from '../../Data/sideBar';
-import { staffManagements } from '../../Data/sideBar';
-import { studentManagement } from '../../Data/sideBar';
+import { MdArrowBackIos, MdClose } from 'react-icons/md';
+import SidebarComponent from "../../components/dashboardComponents/SidebarComponent";
+import {
+  academics,
+  dashboard,
+  feesAccounts,
+  staffManagements,
+  studentManagement
+} from '../../Data/sideBar';
 
+const ASide = ({close, setClose}) => {
+  const [open, setOpen] = useState(true)
 
-const ASide = () => {
-  const [open, setOpen] = useState(true);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
-  useEffect(() => {
-    setOpen(window.innerWidth >= 768);
-  }, []);
-
-  
   return (
-    <aside className={`hidden lg:flex lg:flex-col lg:pb-4 lg:bg-linear-to-b lg:from-emerald-900 lg:via-emerald-800 lg:to-emerald-950 lg:shadow-xl lg:border-r lg:border-white/10 transition-all duration-300 lg:h-full overflow-y-auto custom-scrollbar ${open ? 'w-70' : 'w-22'}`}>
-      <div className="flex justify-between p-4 border-b border-white/10 items-center">
-          { open && <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-white/10">
-              <FaUserGraduate className="size-6 text-white" />
+    <aside className={`${close ? '' : 'hidden'} lg:flex flex-col h-screen backdrop-blur-xl bg-linear-to-b from-emerald-900/95 via-emerald-800/95 to-emerald-950/95 border-r border-white/10 shadow-2xl transition-all duration-300 ease-in-out  ${open ? 'w-72' : 'w-20'} `} >
+      
+      {/* Top Brand */}
+      <div className="flex items-center justify-between px-4 py-5 border-b border-white/10">
+        {open && (
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-2xl bg-white/10 backdrop-blur-md shadow-inner">
+              <FaUserGraduate className="text-white text-lg" />
             </div>
-            <span className="text-white font-semibold tracking-wide">Darajo</span>
-          </div>} 
-          <button onClick={() => setOpen(!open)} aria-expanded={open} className="p-2 rounded-xl hover:bg-white/15 transition-all"
-          >
-            <MdArrowBackIos className={`text-white transition-transform duration-300 ${ open ? "rotate-0" : "rotate-180" }`} />
-          </button>
+            <span className="text-white font-semibold tracking-wide text-base"> Darajo </span>
+          </div>
+        )}
+
+        <button onClick={() => setOpen(!open)} aria-expanded={open} className={`${close ? 'hidden' : ''} p-2 rounded-xl hover:bg-white/10 transition duration-200`} >
+          <MdArrowBackIos className={`text-white transition-transform duration-300 ${ open ? 'rotate-0' : 'rotate-180' }`} />
+        </button>
+        { close && <button onClick={() => setClose(false)} aria-expanded={open} className="p-2 rounded-xl hover:bg-red-500/70 transition duration-200" >
+          <MdClose className={`text-white transition-transform duration-300 ${ open ? 'rotate-0' : 'rotate-180' }`} />
+        </button> }
       </div>
-      <div className="flex flex-col">
-        <SidebarComponent title='DASHBOARD' items={dashboard} open={open} />
-        <SidebarComponent title='ACADEMICS' items={academics} open={open} />
-        <SidebarComponent title='FEES & ACCOUNTS' items={feesAccounts} open={open} />
-        <SidebarComponent title='STAFF MANAGEMENT' items={staffManagements} open={open} />
-        <SidebarComponent title='STUDNT MANAGEMENT' items={studentManagement} open={open} />
+
+      {/* Scroll Area */}
+      <div className="flex-1 py-6 overflow-y-auto custom-scrollbar">
+        <SidebarComponent title="DASHBOARD" items={dashboard} open={open} />
+        <SidebarComponent title="ACADEMICS" items={academics} open={open} />
+        <SidebarComponent title="FEES & ACCOUNTS" items={feesAccounts} open={open} />
+        <SidebarComponent title="STUDENT MANAGEMENT" items={studentManagement} open={open} />
+        <SidebarComponent title="STAFF MANAGEMENT" items={staffManagements} open={open} />
       </div>
     </aside>
   )
 }
 
-export default ASide;
+export default ASide
