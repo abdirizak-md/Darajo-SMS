@@ -6,7 +6,7 @@ import AddSectionModal from '../boxModels/AddSectionModal'
 import TotalComponent from '../components/dashboardComponents/TotalComponent'
 import AllClassesComponent from '../components/sectionClassComponents/AllClassesComponent'
 import ScheduleComponent from '../components/sectionClassComponents/ScheduleComponent'
-import SectionsComponent from '../components/sectionClassComponents/sectionsComponent'
+import SectionsComponent from '../components/sectionClassComponents/SectionsComponent'
 
 const ClassesSections = () => {
     const [active, setActive] = useState('classes');
