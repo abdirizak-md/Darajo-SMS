@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import AddPlanModal from '../boxModels/AddPlanModal'
-import AllPlansComponent from '../components/LessonPlansComponent/AllPlansComponent'
-import LessonsPlanComponent from '../components/LessonPlansComponent/LessonsPlanComponent'
+import AllPlansComponent from '../components/LessonPlansComponents/AllPlansComponent'
+import LessonsPlanComponent from '../components/LessonPlansComponents/LessonsPlanComponent'
 import { Biology, English, Maths, Physics } from '../Data/lessonPlansName'
 
 const LessonPlans = () => {

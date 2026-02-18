@@ -1,14 +1,10 @@
 import { useState } from 'react'
-import { FaCheck, FaPlus } from 'react-icons/fa6'
-import { IoClose, IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import parents from '../Data/parent'
-import student from '../Data/students'
-import StudentComponent from '../components/studentInfoComponent/StudentComponent'
-import ParentComponent from '../components/studentInfoComponent/ParentComponent'
-import TodayAttendanceComponent from '../components/studentInfoComponent/TodayAttendanceComponent'
 import AddStudentModal from '../boxModels/AddStudentModal'
+import ParentComponent from '../components/studentInfoComponents/ParentComponent'
+import StudentComponent from '../components/studentInfoComponents/StudentComponent'
+import TodayAttendanceComponent from '../components/studentInfoComponents/TodayAttendanceComponent'
 
 const StudentInfo = () => {
     const [active, setActive] = useState('staff');

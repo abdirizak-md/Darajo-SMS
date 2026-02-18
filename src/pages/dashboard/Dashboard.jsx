@@ -1,17 +1,10 @@
 import { useState } from 'react';
-import { FaUserGraduate } from 'react-icons/fa6';
-import { IoClose } from 'react-icons/io5';
 import { MdMenu } from 'react-icons/md';
 import CardComponent from '../../components/dashboardComponents/CardComponent';
-import SidebarComponent from '../../components/dashboardComponents/SidebarComponent'
-import actions from '../../Data/actions';
-import recentActivities from '../../Data/recentActivities';
-import { academics, dashboard, feesAccounts, staffManagements, studentManagement } from '../../Data/sideBar';
-import ASide from '../dashboard/ASide'
-import QuickActionComponent from '../../components/dashboardComponents/QuickActionComponent';
-import RecentActivity from '../../components/dashboardComponents/RecentActivityComponent';
-import RecentActivityComponent from '../../components/dashboardComponents/RecentActivityComponent';
 import ChartsGraphsComponent from '../../components/dashboardComponents/ChartsGraphsComponent';
+import QuickActionComponent from '../../components/dashboardComponents/QuickActionComponent';
+import RecentActivityComponent from '../../components/dashboardComponents/RecentActivityComponent';
+import ASide from '../dashboard/ASide';
 
 const Dashboard = () => {
   const [close, setClose] = useState(false);

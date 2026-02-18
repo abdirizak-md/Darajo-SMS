@@ -1,11 +1,8 @@
 import { useState } from 'react'
-import { FaImages, FaLink, FaPlus, FaVideo } from 'react-icons/fa6'
-import { IoDocument, IoSearch, IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
-import studyMaterials from '../Data/studyMaterials'
 import { Link } from 'react-router-dom'
-import AllMaterialComponent from '../components/studyMaterialsComponent/AllMaterialComponent'
-import StudyMaterialsComponent from '../components/studyMaterialsComponent/StudyMaterialsComponent'
+import AllMaterialComponent from '../components/studyMaterialsComponents/AllMaterialComponent'
+import StudyMaterialsComponent from '../components/studyMaterialsComponents/StudyMaterialsComponent'
 import { documents, Images, Links, Video } from '../Data/studyMaterialsName'
 
 const StudyMaterials = () => {

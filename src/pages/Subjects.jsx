@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import { FaPlus } from 'react-icons/fa6'
-import { IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import grades from '../Data/grades'
-import AssignmentComponent from '../components/subjectAssignmentComponent/AssignmentComponent'
-import SubjectComponent from '../components/subjectAssignmentComponent/SubjectComponent'
-import GradeComponent from '../components/subjectAssignmentComponent/GradeComponent'
+import AssignmentComponent from '../components/subjectAssignmentComponents/AssignmentComponent'
+import GradeComponent from '../components/subjectAssignmentComponents/GradeComponent'
+import SubjectComponent from '../components/subjectAssignmentComponents/SubjectComponent'
 
 const Subjects = () => {
     const [active, setActive] = useState('subjects');

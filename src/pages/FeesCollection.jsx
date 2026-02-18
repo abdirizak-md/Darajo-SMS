@@ -1,14 +1,9 @@
 import { useState } from 'react'
-import { FaPlus } from 'react-icons/fa6'
-import { IoSearch, IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import recentPayments from '../Data/recentPayments'
-import pendingFees from '../Data/pendingFees'
-import { overdueFees } from '../Data/pendingFees'
-import RecentPaymentComponent from '../components/feeCollectionComponents/RecentPaymentComponent'
-import PendingFeesComponent from '../components/feeCollectionComponents/PendingFeesComponent'
 import OverDueFeeComponent from '../components/feeCollectionComponents/OverDueFeeComponent'
+import PendingFeesComponent from '../components/feeCollectionComponents/PendingFeesComponent'
+import RecentPaymentComponent from '../components/feeCollectionComponents/RecentPaymentComponent'
 
 const FeesCollection = () => {
     const [active, setActive] = useState('Recent');

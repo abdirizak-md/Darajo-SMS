@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import { FaCalendarWeek, FaPlus } from 'react-icons/fa6'
-import { IoSearchOutline } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import staffs from '../Data/staffs'
-import StaffDirectoryComponent from '../components/staffDirectoryComponents/StaffDirectoryComponent'
 import AssignmentComponent from '../components/staffDirectoryComponents/AssignmentComponent'
 import PayrollComponent from '../components/staffDirectoryComponents/PayrollComponent'
+import StaffDirectoryComponent from '../components/staffDirectoryComponents/StaffDirectoryComponent'
 
 const StaffDirectory = () => {
     const [active, setActive] = useState('Staff');

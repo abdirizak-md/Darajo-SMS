@@ -1,14 +1,12 @@
 import { useState } from 'react'
-import { IoClose } from 'react-icons/io5'
 import { MdArrowBackIos } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import sectionss from '../Data/sections'
-import TotalComponent from '../components/dashboardComponents/TotalComponent'
-import AllClassesComponent from '../components/sectionClassComponent/AllClassesComponent'
-import ScheduleComponent from '../components/sectionClassComponent/ScheduleComponent'
-import SectionsComponent from '../components/sectionClassComponent/sectionsComponent'
 import AddClassModal from '../boxModels/AddClassModal'
 import AddSectionModal from '../boxModels/AddSectionModal'
+import TotalComponent from '../components/dashboardComponents/TotalComponent'
+import AllClassesComponent from '../components/sectionClassComponents/AllClassesComponent'
+import ScheduleComponent from '../components/sectionClassComponents/ScheduleComponent'
+import SectionsComponent from '../components/sectionClassComponents/sectionsComponent'
 
 const ClassesSections = () => {
     const [active, setActive] = useState('classes');

@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import { MdArrowBackIos } from 'react-icons/md'
-import { Link } from 'react-router-dom'
-import exams from '../Data/exams';
-import parents from '../Data/parent';
-import FinalComponent from '../components/examMarksComponent/FinalComponent';
+import { useState } from 'react';
+import { MdArrowBackIos } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import FinalComponent from '../components/examMarksComponents/FinalComponent';
 
 const ExamsMarks = () => {
     const [active, setActive] = useState('final');
